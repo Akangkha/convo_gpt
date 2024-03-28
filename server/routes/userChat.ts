@@ -3,10 +3,10 @@ import {
   createChat,
   getChats,
   deleteChat,
-} from "../controllers/useChats.ts";
+} from "../controllers/useChats";
 
 const router = express.Router();
 router.get("/", getChats);
-router.post("/:faculty", createChat);
-router.put("/", deleteChat);
+router.post("/", createChat);
+router.delete("/", deleteChat);
 export default router;

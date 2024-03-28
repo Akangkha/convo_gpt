@@ -3,12 +3,12 @@ import { Data } from "../types/data"
 
 const userChatSchema: Schema = new Schema({
   userId: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: 'User',
   },
   chatbotId: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: 'Chatbot',
   },
