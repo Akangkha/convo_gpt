@@ -5,11 +5,9 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import { Card } from "../components/Card";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import AddCommentIcon from "@mui/icons-material/AddComment";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { getChats } from "../lib/page";
@@ -25,7 +23,7 @@ export default function Sidebar() {
 
     async function fetchData() {
       try {
-        const chats = await getChats(); 
+        const chats = await getChats();
         if (isMounted) {
           console.log("Chats:", chats);
           setChats(chats);
@@ -34,7 +32,6 @@ export default function Sidebar() {
         console.error("Failed to fetch chats:", error.message);
       }
     }
-
 
     if (typeof window !== "undefined") {
       fetchData();
@@ -54,9 +51,7 @@ export default function Sidebar() {
           chat.messages.length > 0 ? (
             chat.messages.map((message, messageIndex) =>
               message ? (
-                <ListItem key={message._id}>
-                  <ListItemText primary={message.text} />
-                </ListItem>
+                <Card>{message.text}</Card>
               ) : (
                 <ListItem key={messageIndex}>
                   <ListItemText primary="No prompt available" />
@@ -77,7 +72,7 @@ export default function Sidebar() {
   return (
     <div
       sx={{ bgcolor: "#97ACCF" }}
-      className=" h-screen absolute top-0  flex items-center"
+      className=" h-screen absolute top-0  flex items-center sidebar"
     >
       <div className="relative w-64">
         <Drawer
@@ -91,6 +86,11 @@ export default function Sidebar() {
           }}
           className="relative"
         >
+          <div className="flex justify-between items-center px-4 py-2 font-semibold text-[#ffffffaf]">
+            <img src="/icons/logo.png" alt="software logo" width="40px" />
+            NewChat
+            <AddCommentIcon />
+          </div>
           {DrawerList}
         </Drawer>
         {open ? (
