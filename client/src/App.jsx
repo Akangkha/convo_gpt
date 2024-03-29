@@ -1,19 +1,21 @@
-import { useState } from 'react'
-
-import './App.css'
+import { useState } from "react";
+import Sidebar from "../components/Sidebar";
+import Main from "../components/Main.jsx";
+import "./App.css";
+import Topbar from "../components/Topbar.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   console.log(import.meta.env.VITE_APP_API_URL);
   return (
-    <div >
-
-     <h1 className="text-3xl text-white font-bold underline">
-      Hello world!
-    </h1>
-    ssssssss
+    <div className=" h-screen w-screen ">
+      <Topbar />
+      <div className="flex ">
+        <Sidebar />
+        <Main />
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
