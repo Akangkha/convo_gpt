@@ -1,8 +1,8 @@
 import React from "react";
 import "../../style/chatCard.css";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const ChatCard = ({ chat }) => {
-  console.log("Chat Cardkkk:", chat.message.messages);
+
   return (
     <>
       {chat.message.messages.map((message, index) => (
@@ -16,14 +16,14 @@ const ChatCard = ({ chat }) => {
               : ""
           }`}
         >
-          <div className="container-card bg-blue-box px-10 py-5 ">
-            <div className="card-title flex items-center gap-3 w-full ">
-              <img
+          <div className="container-card  px-5 py-5 ">
+            <div className="card-title flex items-center gap-3 w-full mt-4 h-6 ">
+              {(message.author=='chatbot')?<img
                 src="/icons/logo.png"
                 alt="profile_pic"
                 width="30px"
                 height="30px"
-              />
+              />:<AccountCircleIcon className="mb-8"/>}
               <div className="mb-8">{message.author}</div>
             </div>
 

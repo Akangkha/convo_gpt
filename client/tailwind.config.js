@@ -14,8 +14,11 @@ export default {
       colors:
       {
         'accent-1':"#FFDADF",
-        'highlight':"#FE375B"
+        'highlight':"#bf2c47"
         
+      },
+      boxShadow: {
+        '3xl': '0 0px 8px 24px  rgba(0, 0, 0, 0.3) #bf2c47',
       }
     },
   },

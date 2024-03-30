@@ -4,12 +4,12 @@ import IosShareIcon from "@mui/icons-material/IosShare";
 import AudioRecorder from "../AudioRecorder";
 import { createChat } from "../../lib/page";
 import { botResponse } from "../../lib/page";
-import useComponentStore from "../../state/store";
+import {useComponentStore} from "../../state/store";
 import { v4 as uuidv4 } from "uuid";
 export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const [inputValue, setInputValue] = useState("");
   const { chats, addComponent } = useComponentStore();
-
+  const [selected, setSelected] = useState(1);
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -69,33 +69,57 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
     }
   };
 
+
+
+  const handleCellClick = (index) => {
+    setSelected(index);
+  };
+
   return (
-    <div className="flex items-center">
-    <div
-      ref={ref}
-      className={cn(
-        "w-[60vw] bg-accent-1 flex justify-between h-12 rounded-lg p-2 text-black font-medium text-sm m-4 items-center ",
-        className
-      )}
-      suppressHydrationWarning
-    >
-      <input
-        className="w-[88%] h-full bg-transparent outline-none px-6 focus:ring-1 ring-transparent focus:ring-[black] rounded-lg "
-        placeholder="Talk to ConvoGPT...."
-        value={inputValue}
-        onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
-      />
+    <div className="flex items-center flex-col ">
+      <div className="grid grid-cols-3 gap-8">
+      {["Imaginative", "Balanced", "Precise"].map((item, index) => (
+        <div
+          key={index}
+          onClick={() => handleCellClick(index)}
+          className={`p-2 border border-highlight cursor-pointer rounded-lg text-center ${
+            selected === index ? "bg-highlight" : ""
+          }`}
+        >
+          {item}
+        </div>
+      ))}
      
-      <img
-        src="/icons/link.png"
-        // className="absolute right-4 top-3"
-        alt="link button"
-        width={20}
-      />
-      <AudioRecorder />
     </div>
-    <div className="bg-highlight flex items-center px-6 h-12 rounded-lg"> Ask  <IosShareIcon onClick={postDataToAPI} /></div>
+      <div className="flex items-center ">
+      <div
+        ref={ref}
+        className={cn(
+          "w-[60vw] bg-accent-1 flex justify-between h-12 rounded-lg p-2 text-black font-medium text-sm m-4 items-center gap-0 ",
+          className
+        )}
+      >
+        <input
+          className="w-[90%] h-full bg-transparent outline-none px-6 focus:ring-1 ring-transparent focus:ring-[black] rounded-lg "
+          placeholder="Talk to ConvoGPT...."
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
+        />
+
+        <img
+          src="/icons/link.png"
+          // className="absolute right-4 top-3"
+          alt="link button"
+          width={20}
+        />
+        <AudioRecorder />
+      </div>
+      <div className="bg-highlight flex items-center cursor-pointer px-6 h-12 rounded-lg">
+        {" "}
+        Ask <IosShareIcon onClick={getbotResponse} />
+      </div>
+      </div>
     </div>
   );
 });

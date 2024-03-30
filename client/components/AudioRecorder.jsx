@@ -92,6 +92,7 @@ const AudioRecorder = () => {
               <img
                 onClick={getMicrophonePermission}
                 src="/icons/mic.png"
+                
                 // className="absolute right-12 top-3"
                 alt="microphone"
                 width={20}
@@ -99,7 +100,11 @@ const AudioRecorder = () => {
             </button>
           ) : null}
           {recordingStatus === "recording" ? (
-            <button onClick={stopRecording} type="button">
+            <button
+              onClick={stopRecording}
+              type="button"
+              className=" p-2 bg-transparent"
+            >
               <SpatialAudioOffIcon />
             </button>
           ) : null}

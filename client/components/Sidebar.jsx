@@ -12,12 +12,13 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { getChats } from "../lib/page";
-
+import HoverCard from "./HoverCard";
+import {useComponentStore} from "../state/store";
 import { deleteChats } from "../lib/page";
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
-  const [chats, setChats] = React.useState([]);
-  
+  const [userChats, setChats] = React.useState([]);
+  const {chats,addComponent} = useComponentStore();
   const toggleDrawer = () => () => {
     setOpen(!open);
   };
@@ -44,7 +45,7 @@ export default function Sidebar() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [chats,addComponent]);
 
   const deleteData = async () => {
     try {
@@ -55,13 +56,11 @@ export default function Sidebar() {
     }
   };
 
-  const newChat = async () => {
-    deleteComponent();
-  };
+ 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {chats.map((chat, index) =>
+        {userChats.map((chat, index) =>
           chat.messages.length > 0 ? (
             chat.messages.map((message, messageIndex) =>
               message ? (
@@ -91,9 +90,7 @@ export default function Sidebar() {
   );
 
   return (
-    <div
-      className=" h-screen absolute top-0  flex items-center sidebar "
-    >
+    <div className=" h-screen absolute top-0  flex items-center sidebar ">
       <div className="relative w-64">
         <Drawer
           open={open}
@@ -108,8 +105,10 @@ export default function Sidebar() {
         >
           <div className="flex justify-between items-center px-4 py-2 font-semibold text-[#ffffffaf] bg-black">
             <img src="/icons/logo.png" alt="software logo" width="40px" />
-            NewChat
-            <AddCommentIcon onClick={newChat} />
+            allChats
+
+            
+            
             <DeleteIcon onClick={deleteData} className="cursor-pointer" />
           </div>
           {DrawerList}
