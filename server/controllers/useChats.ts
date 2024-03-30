@@ -1,6 +1,5 @@
 import { Data } from "../types/data";
 import UserChat from "../models/chat";
-import mongoose from "mongoose";
 import { Request, Response } from "express";
 export const createChat = async (req: Request, res: Response) => {
   try {

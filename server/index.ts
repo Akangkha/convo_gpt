@@ -5,6 +5,7 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import express, { Application } from "express";
 import useChats from "./routes/userChat";
+import useBot from "./routes/botModel";
 dotenv.config();
 
 const app: Application = express();
@@ -23,10 +24,11 @@ app.use(morgan("dev"));
 app.use("/", express.static("public"));
 
 app.get("/", (req, res) => {
-    res.send("Welcome to Convo_GPT!");
+  res.send("Welcome to Convo_GPT!");
 });
+app.use("/bot", useBot);
 
-app.use("/chat",useChats);
+app.use("/chat", useChats);
 mongoose
   .connect(mongo_db)
   .then(() => console.log("Connected to MongoDB"))

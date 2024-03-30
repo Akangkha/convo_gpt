@@ -39,5 +39,32 @@ export const deleteChat = async (id) => {
   const response = await fetch(`${apiUrl}/chat/${id}`, {
     method: "DELETE",
   });
+
+  const contentType = response.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    throw new Error("Invalid server response: Not JSON");
+  }
+
+  if (!response.ok) {
+    throw new Error("Failed to delete chat");
+  }
+
+  return response.json();
+};
+
+export const deleteChats = async () => {
+  const response = await fetch(`${apiUrl}/chat`, {
+    method: "DELETE",
+  });
+
+  const contentType = response.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    throw new Error("Invalid server response: Not JSON");
+  }
+
+  if (!response.ok) {
+    throw new Error("Failed to delete chats");
+  }
+
   return response.json();
 };

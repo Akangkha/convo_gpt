@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { cn } from "../../lib/utils";
 import IosShareIcon from "@mui/icons-material/IosShare";
+import AudioRecorder from "../AudioRecorder";
 import { createChat } from "../../lib/page";
-import { v4 as uuidv4 } from 'uuid';
+
+import { v4 as uuidv4 } from "uuid";
 export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -13,9 +15,19 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       postDataToAPI();
+      getbotResponse();
     }
   };
 
+  // const getbotResponse = async () => {
+  //   try {
+  //     // const botResponseData = await botResponse(inputValue);
+  //     // console.log(botResponseData);
+  //     botResponse(inputValue);
+  //   } catch (error) {
+  //     console.error("Error fetching bot response:", error.message);
+  //   }
+  // };
   const postDataToAPI = async () => {
     try {
       const userData = {
@@ -30,7 +42,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
           },
         ],
       };
-     
+
       await createChat(userData);
       setInputValue("");
     } catch (error) {
@@ -54,19 +66,14 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <IosShareIcon />
+      <IosShareIcon onClick={postDataToAPI} />
       <img
         src="/icons/link.png"
         // className="absolute right-4 top-3"
         alt="link button"
         width={20}
       />
-      <img
-        src="/icons/mic.png"
-        // className="absolute right-12 top-3"
-        alt="microphone"
-        width={20}
-      />
+      <AudioRecorder />
     </div>
   );
 });

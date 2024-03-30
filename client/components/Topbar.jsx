@@ -4,6 +4,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Menu from "@mui/material/Menu";
 import { MenuItem } from "@mui/material";
+
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -36,15 +37,15 @@ const Topbar = () => {
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
-            backgroundColor="#262626"
+            backgroundColor="#000000"
             PaperProps={{
-                style: {
-                  backgroundColor: "#454545",
-                },
-              }}
+              style: {
+                backgroundColor: "#000000",
+              },
+            }}
           >
-            <MenuItem className="px-5 py-4 flex flex-col gap-4 " >
-              <div className="flex gap-3 p-4 text-white">
+            <MenuItem className="px-5 py-4 flex flex-col gap-4 ">
+              <div className="flex gap-3 p-4 text-[white]">
                 <AutoAwesomeIcon />
                 Upgrade
               </div>
@@ -59,6 +60,7 @@ const Topbar = () => {
           </Menu>
         </div>
       </div>
+
       <ShareIcon />
     </div>
   );

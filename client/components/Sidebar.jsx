@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
@@ -10,7 +10,9 @@ import ListItemText from "@mui/material/ListItemText";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { getChats } from "../lib/page";
+import { deleteChats } from "../lib/page";
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
   const [chats, setChats] = React.useState([]);
@@ -42,7 +44,15 @@ export default function Sidebar() {
     };
   }, []);
 
-  console.log(chats);
+  const deleteData = async () => {
+    console.log('clciked');
+    try {
+      await deleteChats();
+      console.log("Deleted");
+    } catch (error) {
+      console.error("Error deleting chat:", error.message);
+    }
+  };
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
@@ -51,7 +61,14 @@ export default function Sidebar() {
           chat.messages.length > 0 ? (
             chat.messages.map((message, messageIndex) =>
               message ? (
-                <Card className="border rounded-lg border-black shadow-lg bg-[#00000039]">{message.text.substring(0, 25)}</Card>
+                <Card className="border rounded-lg flex border-black shadow-lg h-12 bg-[#00000039] ">
+                  <>
+                    <div className="overflow-hidden w-[85%] h-full">
+                      {message.text.substring(0, 25)}
+                    </div>
+                    <MoreHorizIcon />
+                  </>
+                </Card>
               ) : (
                 <ListItem key={messageIndex}>
                   <ListItemText primary="No prompt available" />
@@ -90,6 +107,7 @@ export default function Sidebar() {
             <img src="/icons/logo.png" alt="software logo" width="40px" />
             NewChat
             <AddCommentIcon />
+            <DeleteIcon onClick={deleteData} className="cursor-pointer" />
           </div>
           {DrawerList}
         </Drawer>
