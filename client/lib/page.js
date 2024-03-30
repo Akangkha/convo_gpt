@@ -68,3 +68,17 @@ export const deleteChats = async () => {
 
   return response.json();
 };
+
+export const getReponse = async (msg) => {
+  try {
+    const response = await fetch(`${apiUrl}/bot/${msg}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch response");
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching response:", error.message);
+    throw error;
+  }
+};
