@@ -3,10 +3,12 @@ import { cn } from "../../lib/utils";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import AudioRecorder from "../AudioRecorder";
 import { createChat } from "../../lib/page";
-
+import { botResponse } from "../../lib/page";
+import useComponentStore from "../../state/store";
 import { v4 as uuidv4 } from "uuid";
 export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const [inputValue, setInputValue] = useState("");
+  const { chats, addComponent } = useComponentStore();
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -19,15 +21,31 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
     }
   };
 
-  // const getbotResponse = async () => {
-  //   try {
-  //     // const botResponseData = await botResponse(inputValue);
-  //     // console.log(botResponseData);
-  //     botResponse(inputValue);
-  //   } catch (error) {
-  //     console.error("Error fetching bot response:", error.message);
-  //   }
-  // };
+  const getbotResponse = async () => {
+    try {
+      const botResponseData = await botResponse(inputValue);
+      console.log(botResponseData);
+      const userData = {
+        userId: uuidv4(),
+        chatbotId: uuidv4(),
+        languageModel: "gpt-1.0",
+        messages: [
+          {
+            author: "chatbot",
+            text: botResponseData,
+            timestamp: new Date(),
+          },
+        ],
+      };
+      addComponent(userData);
+      await createChat(userData);
+    } catch (error) {
+      console.error(
+        "Error fetching bot response and updating the same:",
+        error.message
+      );
+    }
+  };
   const postDataToAPI = async () => {
     try {
       const userData = {
@@ -43,6 +61,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
         ],
       };
 
+      addComponent(userData);
       await createChat(userData);
       setInputValue("");
     } catch (error) {
@@ -51,6 +70,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
   };
 
   return (
+    <div className="flex items-center">
     <div
       ref={ref}
       className={cn(
@@ -66,7 +86,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
       />
-      <IosShareIcon onClick={postDataToAPI} />
+     
       <img
         src="/icons/link.png"
         // className="absolute right-4 top-3"
@@ -74,6 +94,8 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
         width={20}
       />
       <AudioRecorder />
+    </div>
+    <div className="bg-highlight flex items-center px-6 h-12 rounded-lg"> Ask  <IosShareIcon onClick={postDataToAPI} /></div>
     </div>
   );
 });

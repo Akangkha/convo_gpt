@@ -4,9 +4,12 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Menu from "@mui/material/Menu";
 import { MenuItem } from "@mui/material";
+import useComponentStore from "../state/store";
 
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { deleteComponent } = useComponentStore();
+  
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -16,7 +19,7 @@ const Topbar = () => {
   };
 
   return (
-    <div className="w-screen h-16 text-white bg-accent-1 flex fixed z-10 justify-between items-center px-12 font-extrabold">
+    <div className="w-screen h-16 text-white  flex fixed z-10 justify-between items-center px-12 font-extrabold">
       <div className="flex justify-center items-center gap-2">
         ConvoGPT 1.0
         <div>
@@ -37,31 +40,33 @@ const Topbar = () => {
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
-            backgroundColor="#000000"
+       
             PaperProps={{
               style: {
-                backgroundColor: "#000000",
+                backgroundColor: "#ffffff00",
               },
             }}
           >
             <MenuItem className="px-5 py-4 flex flex-col gap-4 ">
               <div className="flex gap-3 p-4 text-[white]">
-                <AutoAwesomeIcon />
+                <AutoAwesomeIcon sx={{color:"#FE375B"}}/>
                 Upgrade
               </div>
               <div className="w-[20rem] text-wrap text-center text-white ">
                 Unlock the Infinite Potential of AI: Experience Our Most
                 Advanced and Intelligent GPT Model Yet.
               </div>
-              <div className="bg-accent-1 rounded-lg px-8 py-2 text-white font-bold text-center">
+              <div className="bg-highlight rounded-lg px-8 py-2 text-white font-bold text-center">
                 Upgrade to Plus
               </div>
             </MenuItem>
           </Menu>
         </div>
       </div>
-
-      <ShareIcon />
+      <div className="flex gap-4  items-center">
+        <ShareIcon />
+        <img src="/icons/clear.png" className="h-8 w-8" alt="clear all" />
+      </div>
     </div>
   );
 };

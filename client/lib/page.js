@@ -69,16 +69,22 @@ export const deleteChats = async () => {
   return response.json();
 };
 
-export const getReponse = async (msg) => {
+export const botResponse = async (msg) => {
   try {
-    const response = await fetch(`${apiUrl}/bot/${msg}`);
+    const response = await fetch(
+      `${apiUrl}/bot?msg=${encodeURIComponent(msg)}`
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch response");
     }
-
-    return response.json();
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      return await response.json();
+    } else {
+      return await response.text();
+    }
   } catch (error) {
-    console.error("Error fetching response:", error.message);
+    console.error("Error fetching bot response:", error.message);
     throw error;
   }
 };

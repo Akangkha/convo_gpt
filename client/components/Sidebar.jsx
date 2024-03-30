@@ -12,10 +12,12 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { getChats } from "../lib/page";
+
 import { deleteChats } from "../lib/page";
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
   const [chats, setChats] = React.useState([]);
+  
   const toggleDrawer = () => () => {
     setOpen(!open);
   };
@@ -45,7 +47,6 @@ export default function Sidebar() {
   }, []);
 
   const deleteData = async () => {
-    console.log('clciked');
     try {
       await deleteChats();
       console.log("Deleted");
@@ -54,6 +55,9 @@ export default function Sidebar() {
     }
   };
 
+  const newChat = async () => {
+    deleteComponent();
+  };
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
@@ -61,7 +65,7 @@ export default function Sidebar() {
           chat.messages.length > 0 ? (
             chat.messages.map((message, messageIndex) =>
               message ? (
-                <Card className="border rounded-lg flex border-black shadow-lg h-12 bg-[#00000039] ">
+                <Card className="border rounded-lg flex border-black shadow-lg h-12 text-accent-1">
                   <>
                     <div className="overflow-hidden w-[85%] h-full">
                       {message.text.substring(0, 25)}
@@ -88,17 +92,16 @@ export default function Sidebar() {
 
   return (
     <div
-      sx={{ bgcolor: "#97ACCF" }}
-      className=" h-screen absolute top-0  flex items-center sidebar"
+      className=" h-screen absolute top-0  flex items-center sidebar "
     >
       <div className="relative w-64">
         <Drawer
           open={open}
           onClose={toggleDrawer(false)}
-          backgroundColor="#5638b7"
+          backgroundColor="#1a171c"
           PaperProps={{
             style: {
-              backgroundColor: "#5638b7",
+              backgroundColor: "#1a171c",
             },
           }}
           className="relative"
@@ -106,7 +109,7 @@ export default function Sidebar() {
           <div className="flex justify-between items-center px-4 py-2 font-semibold text-[#ffffffaf] bg-black">
             <img src="/icons/logo.png" alt="software logo" width="40px" />
             NewChat
-            <AddCommentIcon />
+            <AddCommentIcon onClick={newChat} />
             <DeleteIcon onClick={deleteData} className="cursor-pointer" />
           </div>
           {DrawerList}

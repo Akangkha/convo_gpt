@@ -13,8 +13,9 @@ export default {
       },
       colors:
       {
-        'accent-1':"#5638b7",
-        'accent-2':"#24184b",
+        'accent-1':"#FFDADF",
+        'highlight':"#FE375B"
+        
       }
     },
   },

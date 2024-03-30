@@ -9,6 +9,5 @@ export const Card = React.forwardRef(({ className, ...props }, ref) => (
       className
     )}
     {...props}
-    suppressHydrationWarning
   />
 ));

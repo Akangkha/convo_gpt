@@ -2,12 +2,14 @@ import React from "react";
 import "../../style/chatCard.css";
 
 const ChatCard = ({ chat }) => {
+  console.log("Chat Cardkkk:", chat.message.messages);
   return (
     <>
-      {chat.props.chat.messages.map((message, index) => (
-        <div  key={index}
+      {chat.message.messages.map((message, index) => (
+        <div
+          key={index}
           className={`card mb-4 ${
-             message.author=== "chatbot"
+            message.author === "chatbot"
               ? "self-start"
               : message.author === "user"
               ? "self-end"
@@ -22,7 +24,7 @@ const ChatCard = ({ chat }) => {
                 width="30px"
                 height="30px"
               />
-              <div className="mb-8">Get up to 11x Leverage</div>
+              <div className="mb-8">{message.author}</div>
             </div>
 
             <p className="card-description">
