@@ -1,19 +1,18 @@
 const apiUrl = import.meta.env.VITE_APP_API_URL;
 console.log(apiUrl);
 export const getChats = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/chat`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch chats');
-      }
-    
-      return response.json();
-    } catch (error) {
-      console.error('Error fetching chats:', error.message);
-      throw error;
+  try {
+    const response = await fetch(`${apiUrl}/chat`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch chats");
     }
-  };
-  
+
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching chats:", error.message);
+    throw error;
+  }
+};
 
 export const getChat = async (id) => {
   const response = await fetch(`${apiUrl}/chat/${id}`);
@@ -21,14 +20,19 @@ export const getChat = async (id) => {
 };
 
 export const createChat = async (chatData) => {
-  const response = await fetch(`${apiUrl}/chat`, {
+  console.log(chatData);
+  return fetch(`${apiUrl}/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(chatData),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("Failed to create chat");
+    }
+    return response.json();
   });
-  return response.json();
 };
 
 export const deleteChat = async (id) => {

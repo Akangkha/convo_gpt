@@ -43,7 +43,7 @@ const Topbar = () => {
                 },
               }}
           >
-            <MenuItem className="px-5 py-4 flex flex-col gap-4  ">
+            <MenuItem className="px-5 py-4 flex flex-col gap-4 " >
               <div className="flex gap-3 p-4 text-white">
                 <AutoAwesomeIcon />
                 Upgrade

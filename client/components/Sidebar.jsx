@@ -51,7 +51,7 @@ export default function Sidebar() {
           chat.messages.length > 0 ? (
             chat.messages.map((message, messageIndex) =>
               message ? (
-                <Card>{message.text}</Card>
+                <Card className="border rounded-lg border-black shadow-lg bg-[#00000039]">{message.text.substring(0, 25)}</Card>
               ) : (
                 <ListItem key={messageIndex}>
                   <ListItemText primary="No prompt available" />
@@ -86,7 +86,7 @@ export default function Sidebar() {
           }}
           className="relative"
         >
-          <div className="flex justify-between items-center px-4 py-2 font-semibold text-[#ffffffaf]">
+          <div className="flex justify-between items-center px-4 py-2 font-semibold text-[#ffffffaf] bg-black">
             <img src="/icons/logo.png" alt="software logo" width="40px" />
             NewChat
             <AddCommentIcon />
