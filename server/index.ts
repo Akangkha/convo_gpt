@@ -1,46 +1,3 @@
-// import cors from "cors";
-// import mongoose from "mongoose";
-// import morgan from "morgan";
-// import helmet from "helmet";
-// import dotenv from "dotenv";
-// import express, { Application } from "express";
-// import useChats from "./routes/userChat";
-// import useBot from "./routes/botModel";
-// dotenv.config();
-
-// const app: Application = express();
-// const mongo_db = process.env.MONGO_URI || "mongodb://localhost:27017/convo_gpt";
-// if (!mongo_db) {
-//   throw new Error("MONGO_URI must be set in the environment variables");
-// }
-// const port = process.env.PORT || 5000;
-// const corsConfig = {
-//   origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app/"],
-//   optionsSuccessStatus: 200,
-//   methods: ["GET", "POST"],
-//   credentials: true,
-// };
-
-// app.use(cors(corsConfig));
-// app.use(helmet({ contentSecurityPolicy: false }));
-// app.use(express.json());
-// app.use(morgan("dev"));
-
-// app.use("/", express.static("public"));
-
-// app.get("/", (req, res) => {
-//   res.send("Welcome to Convo_GPT!");
-// });
-// app.use("/bot", useBot);
-
-// app.use("/chat", useChats);
-// mongoose
-//   .connect(mongo_db!)
-//   .then(() => console.log("Connected to MongoDB"))
-//   .then(() =>
-//     app.listen(port, () => console.log(`Server is running on port ${port}`))
-//   )
-//   .catch((err) => console.log(err));
 import cors from "cors";
 import mongoose from "mongoose";
 import morgan from "morgan";
@@ -58,22 +15,13 @@ if (!mongo_db) {
   throw new Error("MONGO_URI must be set in the environment variables");
 }
 const port = process.env.PORT || 5000;
+const corsOptions = {
+  credentials: true,
+  origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app/"],
+};
 
-// const corsConfig = {
-//   origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app"],
-//   optionsSuccessStatus: 200,
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   credentials: true,
-// };
+app.use(cors(corsOptions));
 
-// app.use(cors(corsConfig));
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-   res.setHeader("Access-Control-Allow-Credentials", "true");
-  next();
-});
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(morgan("dev"));
