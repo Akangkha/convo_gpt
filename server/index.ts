@@ -9,7 +9,10 @@ import useBot from "./routes/botModel";
 dotenv.config();
 
 const app: Application = express();
-const mongo_db = process.env.MONGO_URI || "mongodb://localhost:27017/convo_gpt";
+const mongo_db = process.env.MONGO_URI;
+if (!mongo_db) {
+  throw new Error("MONGO_URI must be set in the environment variables");
+}
 const port = process.env.PORT || 5000;
 const corsConfig = {
   origin: "*",
@@ -30,7 +33,7 @@ app.use("/bot", useBot);
 
 app.use("/chat", useChats);
 mongoose
-  .connect(mongo_db)
+  .connect(mongo_db!)
   .then(() => console.log("Connected to MongoDB"))
   .then(() =>
     app.listen(port, () => console.log(`Server is running on port ${port}`))
