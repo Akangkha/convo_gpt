@@ -15,4 +15,9 @@ const useHoverStore = create((set) => ({
   hoverText: (element) => set({ hovered: element }),
 }));
 
-export { useHoverStore, useComponentStore };
+const themeStore = create((set) => ({
+  theme: "2",
+  themeChange: (theme) => set({ theme }),
+}));
+
+export { useHoverStore, useComponentStore, themeStore };

@@ -4,11 +4,13 @@ import IosShareIcon from "@mui/icons-material/IosShare";
 import AudioRecorder from "../AudioRecorder";
 import { createChat } from "../../lib/page";
 import { botResponse } from "../../lib/page";
-import { useComponentStore } from "../../state/store";
+import { useComponentStore, themeStore } from "../../state/store";
 import { v4 as uuidv4 } from "uuid";
 export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const [inputValue, setInputValue] = useState("");
   const { chats, addComponent } = useComponentStore();
+  const { theme } = themeStore();
+  
   const [selected, setSelected] = useState(1);
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -80,8 +82,8 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
           <div
             key={index}
             onClick={() => handleCellClick(index)}
-            className={`p-2 border border-highlight cursor-pointer rounded-lg text-center ${
-              selected === index ? "bg-highlight" : ""
+            className={`p-2 border border-highlight-1 cursor-pointer rounded-lg text-center ${
+              selected === index ? "bg-highlight-1" : ""
             }`}
           >
             {item}
@@ -112,10 +114,13 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
           />
           <AudioRecorder />
         </div>
-        <div className="bg-highlight flex items-center cursor-pointer px-6 h-12 rounded-lg">
+        {theme && <div
+          // className={`bg-highlight-${theme} flex items-center cursor-pointer px-6 h-12 rounded-lg`}
+          className={`bg-highlight-1cd ../ flex items-center cursor-pointer px-6 h-12 rounded-lg`}
+        >
           {" "}
           Ask <IosShareIcon onClick={getbotResponse} className="mb-1 ml-2" />
-        </div>
+        </div>}
       </div>
     </div>
   );

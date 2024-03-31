@@ -31,9 +31,9 @@ const AudioRecorder = () => {
     setRecordingStatus("recording");
     console.log(recordingStatus);
     console.log("recording started");
-    //create new Media recorder instance using the stream
+
     mediaRecorder.current = new MediaRecorder(stream, { type: mimeType });
-    //set the MediaRecorder instance to the mediaRecorder ref
+
     mediaRecorder.current.start();
     let localAudioChunks = [];
     mediaRecorder.current.ondataavailable = (event) => {
@@ -48,11 +48,10 @@ const AudioRecorder = () => {
   const stopRecording = () => {
     console.log(recordingStatus);
     console.log("recording stoopped");
-    // Set onstop event before stopping the recording
+
     mediaRecorder.current.onstop = () => {
-      //creates a blob file from the audiochunks data
       const audioBlob = new Blob(audioChunks, { type: mimeType });
-      //creates a playable URL from the blob file.
+
       const audioUrl = URL.createObjectURL(audioBlob);
       setAudio(audioUrl);
       setAudioChunks([]);
@@ -92,7 +91,6 @@ const AudioRecorder = () => {
               <img
                 onClick={getMicrophonePermission}
                 src="/icons/mic.png"
-                
                 // className="absolute right-12 top-3"
                 alt="microphone"
                 width={20}

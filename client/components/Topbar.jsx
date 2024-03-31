@@ -5,16 +5,17 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Menu from "@mui/material/Menu";
 import { MenuItem } from "@mui/material";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
-import { useComponentStore } from "../state/store";
-import {Share} from "./Share";
+import { useComponentStore, themeStore } from "../state/store";
+import { Share } from "./Share";
 import HoverCard from "./HoverCard";
 import { Theme } from "./Theme";
 const Topbar = () => {
+  const { theme } = themeStore();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showPopover, setShowPopover] = useState(false);
   const [share, setShare] = useState(false);
   const { deleteComponent } = useComponentStore();
-  const [theme, setTheme] = React.useState(false);
+  const [themes, setTheme] = React.useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,7 +30,9 @@ const Topbar = () => {
   };
   return (
     <div className="w-screen h-16 text-white  flex fixed z-10 justify-between items-center px-12 font-extrabold">
-      <div className="flex justify-center items-center gap-2">
+      <div
+        className={`flex justify-center items-center text-highlight-${theme} gap-2 `}
+      >
         ConvoGPT 1.0
         <div>
           <div
@@ -80,7 +83,7 @@ const Topbar = () => {
           />
           {showPopover == 1 && <HoverCard info="change theme" />}
         </div>
-        {theme && <Theme setTheme={setTheme} />}
+        {themes && <Theme setTheme={setTheme} />}
         <div className="relative inline-block">
           <ShareIcon
             onClick={() => setShare(true)}
@@ -89,7 +92,7 @@ const Topbar = () => {
           />
           {showPopover == 2 && <HoverCard info="share chat" />}
         </div>
-            {share && <Share setShare={setShare} share={share}/>}
+        {share && <Share setShare={setShare} share={share} />}
         <div className="relative inline-block">
           <img
             src="/icons/clear.png"
