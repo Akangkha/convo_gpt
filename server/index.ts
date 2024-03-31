@@ -15,12 +15,8 @@ if (!mongo_db) {
   throw new Error("MONGO_URI must be set in the environment variables");
 }
 const port = process.env.PORT || 5000;
-const corsOptions = {
-  credentials: true,
-  origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app/"],
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
