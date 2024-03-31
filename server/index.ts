@@ -59,14 +59,21 @@ if (!mongo_db) {
 }
 const port = process.env.PORT || 5000;
 
-const corsConfig = {
-  origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app"],
-  optionsSuccessStatus: 200,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-};
+// const corsConfig = {
+//   origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app"],
+//   optionsSuccessStatus: 200,
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   credentials: true,
+// };
 
-app.use(cors(corsConfig));
+// app.use(cors(corsConfig));
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+   res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(morgan("dev"));
