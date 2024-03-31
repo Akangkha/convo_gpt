@@ -15,7 +15,9 @@ if (!mongo_db) {
 }
 const port = process.env.PORT || 5000;
 const corsConfig = {
-  origin: "*",
+  origin: ["http://localhost:5173", "https://convo-gpt-m4rw.vercel.app/"],
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST"],
   credentials: true,
 };
 
