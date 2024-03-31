@@ -18,7 +18,7 @@ import { deleteChats } from "../lib/page";
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
   const [userChats, setChats] = React.useState([]);
-  const { chats, addComponent } = useComponentStore();
+  const { chats, addComponent} = useComponentStore();
   const [showPopover, setShowPopover] = useState(false);
   const toggleDrawer = () => () => {
     setOpen(!open);
@@ -51,14 +51,14 @@ export default function Sidebar() {
   const deleteData = async () => {
     try {
       await deleteChats();
-      console.log("Deleted");
+      
     } catch (error) {
       console.error("Error deleting chat:", error.message);
     }
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 250 ,height:600,overflow:"scroll" }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {userChats.map((chat, index) =>
           chat.messages.length > 0 ? (
@@ -119,6 +119,9 @@ export default function Sidebar() {
             </div>
           </div>
           {DrawerList}
+          <div className="bg-highlight-1 flex items-center justify-center text-white  py-4 rounded-lg m-3 ">
+            Contact doctors nearby
+          </div>
         </Drawer>
         {open ? (
           <NavigateBeforeIcon

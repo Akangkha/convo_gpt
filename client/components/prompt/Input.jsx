@@ -87,7 +87,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
 
   return (
     <div className="flex items-center flex-col bg-transparent">
-      <div className="grid grid-cols-3 gap-8 bg-transparent">
+      <div className="grid md:grid-cols-3 gap-8 bg-transparent grid-cols-1">
         {["Medicine information", "Symptoms analysis", "Emergency aid"].map(
           (item, index) => (
             <div
