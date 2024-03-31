@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Input } from "./Input";
 import ChatCard from "./ChatCard";
-import {useComponentStore} from "../../state/store";
+import { useComponentStore } from "../../state/store";
 import { getChats } from "../../lib/page";
 const Main = () => {
   const { chats, addComponent } = useComponentStore();
@@ -23,7 +23,7 @@ const Main = () => {
             </div>
             <p className="text-center mt-4">Hello {user}!</p>
             <p className="text-center mt-4">
-              Start a conversation with the AI chatbot by typing in the input
+              Start a conversation with the AIDoc regarding your medical aid by typing in the input
               box below.
             </p>
           </div>

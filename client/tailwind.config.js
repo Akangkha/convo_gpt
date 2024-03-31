@@ -11,8 +11,8 @@ export default {
         sans: ["Raleway", "sans-serif"],
       },
       colors: {
-        "accent-1": "#FFDADF",
-        "highlight-1": "#bf2c47",
+        "accent-1": "#DAC9FF",
+        "highlight-1": "#4E54F0",
         "accent-2": "#DAC9FF",
         "accent-3": "#FFC37C",
         "highlight-2": "#4E54F0",

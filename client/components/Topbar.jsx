@@ -4,9 +4,11 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Menu from "@mui/material/Menu";
 import { MenuItem } from "@mui/material";
+import GTranslateIcon from "@mui/icons-material/GTranslate";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import { useComponentStore, themeStore } from "../state/store";
 import { Share } from "./Share";
+import { Translate } from "./Translate";
 import HoverCard from "./HoverCard";
 import { Theme } from "./Theme";
 const Topbar = () => {
@@ -14,6 +16,7 @@ const Topbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showPopover, setShowPopover] = useState(false);
   const [share, setShare] = useState(false);
+  const [lang, setlang] = useState(false);
   const { deleteComponent } = useComponentStore();
   const [themes, setTheme] = React.useState(false);
   const open = Boolean(anchorEl);
@@ -28,12 +31,15 @@ const Topbar = () => {
     console.log("delete");
     deleteComponent();
   };
+  const translate = () => {
+    setlang(!lang);
+  };
   return (
     <div className="w-screen h-16 text-white  flex fixed z-10 justify-between items-center px-12 font-extrabold">
       <div
         className={`flex justify-center items-center text-highlight-${theme} gap-2 `}
       >
-        ConvoGPT 1.0
+        ConvoGPT 1.0 : AiDoc
         <div>
           <div
             id="basic-button"
@@ -75,6 +81,12 @@ const Topbar = () => {
         </div>
       </div>
       <div className="flex gap-4  items-center">
+        {lang && (
+          <div className="relative inline-block">
+            <Translate />
+          </div>
+        )}
+        <GTranslateIcon onClick={translate} />
         <div className="relative inline-block">
           <ColorLensIcon
             onMouseEnter={() => setShowPopover(1)}
@@ -83,6 +95,7 @@ const Topbar = () => {
           />
           {showPopover == 1 && <HoverCard info="change theme" />}
         </div>
+
         {themes && <Theme setTheme={setTheme} />}
         <div className="relative inline-block">
           <ShareIcon
@@ -92,6 +105,7 @@ const Topbar = () => {
           />
           {showPopover == 2 && <HoverCard info="share chat" />}
         </div>
+
         {share && <Share setShare={setShare} share={share} />}
         <div className="relative inline-block">
           <img

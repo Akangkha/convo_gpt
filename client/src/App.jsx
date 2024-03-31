@@ -4,7 +4,7 @@ import Main from "../components/prompt/Main.jsx";
 import "./App.css";
 
 import Topbar from "../components/Topbar.jsx";
-import Recorder from "../components/AudioRecorder.jsx";
+import { ThemeProvider } from "../components/ThemeChanger.jsx";
 function App() {
   const [count, setCount] = useState(0);
   console.log(import.meta.env.VITE_APP_API_URL);

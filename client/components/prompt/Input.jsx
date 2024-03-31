@@ -10,7 +10,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
   const [inputValue, setInputValue] = useState("");
   const { chats, addComponent } = useComponentStore();
   const { theme } = themeStore();
-  
+
   const [selected, setSelected] = useState(1);
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -25,6 +25,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
 
   const getbotResponse = async () => {
     try {
+      console.log("pressed");
       const botResponseData = await botResponse(inputValue);
       console.log(botResponseData);
       const userData = {
@@ -73,22 +74,33 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
 
   const handleCellClick = (index) => {
     setSelected(index);
+    if (index === 0) {
+      setInputValue("i want to know about this medicine");
+    }
+    if (index === 1) {
+      setInputValue("I am feeling unwell");
+    }
+    if (index === 2) {
+      setInputValue("I need emergency help");
+    }
   };
 
   return (
     <div className="flex items-center flex-col bg-transparent">
       <div className="grid grid-cols-3 gap-8 bg-transparent">
-        {["Imaginative", "Balanced", "Precise"].map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleCellClick(index)}
-            className={`p-2 border border-highlight-1 cursor-pointer rounded-lg text-center ${
-              selected === index ? "bg-highlight-1" : ""
-            }`}
-          >
-            {item}
-          </div>
-        ))}
+        {["Medicine information", "Symptoms analysis", "Emergency aid"].map(
+          (item, index) => (
+            <div
+              key={index}
+              onClick={() => handleCellClick(index)}
+              className={`p-2 border border-highlight-1 cursor-pointer rounded-lg text-center ${
+                selected === index ? "bg-highlight-1" : ""
+              }`}
+            >
+              {item}
+            </div>
+          )
+        )}
       </div>
       <div className="flex items-center ">
         <div
@@ -114,13 +126,19 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
           />
           <AudioRecorder />
         </div>
-        {theme && <div
-          // className={`bg-highlight-${theme} flex items-center cursor-pointer px-6 h-12 rounded-lg`}
-          className={`bg-highlight-1cd ../ flex items-center cursor-pointer px-6 h-12 rounded-lg`}
-        >
-          {" "}
-          Ask <IosShareIcon onClick={getbotResponse} className="mb-1 ml-2" />
-        </div>}
+        {theme && (
+          <div
+            // className={`bg-highlight-${theme} flex items-center cursor-pointer px-6 h-12 rounded-lg`}
+            className={`bg-highlight-1  flex items-center cursor-pointer px-6 h-12 rounded-lg`}
+            onClick={() => {
+              postDataToAPI();
+              getbotResponse();
+            }}
+          >
+            {" "}
+            Ask <IosShareIcon className="mb-1 ml-2" />
+          </div>
+        )}
       </div>
     </div>
   );
