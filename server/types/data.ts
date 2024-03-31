@@ -1,9 +1,9 @@
 export interface Data {
     userId: string;
     chatbotId: string;
-    languageModel: 'gpt-3.5' | 'gpt-4' | 'custom';
+    languageModel: 'gpt-1.0' | 'gpt-1.1' | 'custom';
     messages: {
-      author: 'user' | 'chatbot';
+      author: 'user' | 'chatbot' | 'ConvoGPT';
       text: string;
       timestamp: Date;
     }[];

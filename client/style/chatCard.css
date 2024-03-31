@@ -10,13 +10,11 @@
   background: linear-gradient(71deg, #080509, #1a171c, #080509);
   background-clip: padding-box;
   border-radius: 10px;
-  
+  width: 100%;
   img {
     margin-bottom: 32px;
   }
 }
-
-
 
 .bg-blue-box::after {
   position: absolute;
@@ -29,8 +27,6 @@
   border-radius: 45px;
 }
 
-
-.bg-blue-box::after {
-  background: linear-gradient(71deg, #0c0a0e, #FE375B, #0c0a0e);
+.bg-theme-box::after {
+  background: white;
 }
- 

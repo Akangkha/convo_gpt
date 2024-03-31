@@ -18,7 +18,7 @@ const ChatCard = ({ chat }) => {
         >
           <div className="container-card  px-5 py-5 ">
             <div className="card-title flex items-center gap-3 w-full mt-4 h-6 ">
-              {(message.author=='chatbot')?<img
+              {(message.author=='ConvoGPT')?<img
                 src="/icons/logo.png"
                 alt="profile_pic"
                 width="30px"

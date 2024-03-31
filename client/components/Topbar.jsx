@@ -6,11 +6,13 @@ import Menu from "@mui/material/Menu";
 import { MenuItem } from "@mui/material";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import { useComponentStore } from "../state/store";
+import {Share} from "./Share";
 import HoverCard from "./HoverCard";
 import { Theme } from "./Theme";
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showPopover, setShowPopover] = useState(false);
+  const [share, setShare] = useState(false);
   const { deleteComponent } = useComponentStore();
   const [theme, setTheme] = React.useState(false);
   const open = Boolean(anchorEl);
@@ -78,15 +80,16 @@ const Topbar = () => {
           />
           {showPopover == 1 && <HoverCard info="change theme" />}
         </div>
-        {theme && <Theme  setTheme={setTheme} />}
+        {theme && <Theme setTheme={setTheme} />}
         <div className="relative inline-block">
           <ShareIcon
+            onClick={() => setShare(true)}
             onMouseEnter={() => setShowPopover(2)}
             onMouseLeave={() => setShowPopover(false)}
           />
           {showPopover == 2 && <HoverCard info="share chat" />}
         </div>
-
+            {share && <Share setShare={setShare} share={share}/>}
         <div className="relative inline-block">
           <img
             src="/icons/clear.png"

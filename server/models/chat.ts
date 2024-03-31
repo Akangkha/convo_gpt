@@ -23,7 +23,7 @@ const userChatSchema: Schema = new Schema(
       {
         author: {
           type: String,
-          enum: ["user", "chatbot"],
+          enum: ["user", "chatbot","ConvoGPT"],
           required: true,
         },
         text: {

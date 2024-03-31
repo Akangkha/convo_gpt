@@ -7,18 +7,19 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import { Card } from "../components/Card";
 import ListItemText from "@mui/material/ListItemText";
-import AddCommentIcon from "@mui/icons-material/AddComment";
+import HistoryIcon from "@mui/icons-material/History";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { getChats } from "../lib/page";
 import HoverCard from "./HoverCard";
-import {useComponentStore} from "../state/store";
+import { useComponentStore } from "../state/store";
 import { deleteChats } from "../lib/page";
 export default function Sidebar() {
   const [open, setOpen] = React.useState(false);
   const [userChats, setChats] = React.useState([]);
-  const {chats,addComponent} = useComponentStore();
+  const { chats, addComponent } = useComponentStore();
+  const [showPopover, setShowPopover] = useState(false);
   const toggleDrawer = () => () => {
     setOpen(!open);
   };
@@ -45,7 +46,7 @@ export default function Sidebar() {
     return () => {
       isMounted = false;
     };
-  }, [chats,addComponent]);
+  }, [chats, addComponent]);
 
   const deleteData = async () => {
     try {
@@ -56,7 +57,6 @@ export default function Sidebar() {
     }
   };
 
- 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
@@ -90,7 +90,7 @@ export default function Sidebar() {
   );
 
   return (
-    <div className=" h-screen absolute top-0  flex items-center sidebar ">
+    <div className=" h-screen top-0  flex items-center sidebar absolute">
       <div className="relative w-64">
         <Drawer
           open={open}
@@ -104,12 +104,19 @@ export default function Sidebar() {
           className="relative"
         >
           <div className="flex justify-between items-center px-4 py-2 font-semibold text-[#ffffffaf] bg-black">
-            <img src="/icons/logo.png" alt="software logo" width="40px" />
-            allChats
-
-            
-            
-            <DeleteIcon onClick={deleteData} className="cursor-pointer" />
+            <HistoryIcon />
+            <div className="absolute left-12">allChats</div>
+            <div className="relative inline-block justify-end">
+              <DeleteIcon
+                onClick={deleteData}
+                className="cursor-pointer"
+                onMouseEnter={() => setShowPopover(2)}
+                onMouseLeave={() => setShowPopover(false)}
+              />
+              {showPopover && (
+                <HoverCard info="clear chat" className="right-0" />
+              )}
+            </div>
           </div>
           {DrawerList}
         </Drawer>
