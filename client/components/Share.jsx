@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { useComponentStore } from "../state/store";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { copyContent } from "../lib/CopyText";
+
 import Modal from "@mui/material/Modal";
 import "../style/chatCard.css";
 const style = {
@@ -15,7 +16,7 @@ const style = {
 export const Share = ({ setShare, share }) => {
   const handleClose = () => setShare(false);
   const { chats } = useComponentStore();
-  console.log("share");
+
 
   return (
     <Modal
