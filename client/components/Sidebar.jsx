@@ -13,6 +13,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { getChats } from "../lib/page";
 import HoverCard from "./HoverCard";
+import toast from "react-hot-toast";
 import { useComponentStore } from "../state/store";
 import { deleteChats } from "../lib/page";
 export default function Sidebar() {
@@ -51,7 +52,7 @@ export default function Sidebar() {
   const deleteData = async () => {
     try {
       await deleteChats();
-      
+      toast.success("History Cleared ! Refresh to see changes");
     } catch (error) {
       console.error("Error deleting chat:", error.message);
     }

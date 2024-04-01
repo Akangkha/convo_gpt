@@ -21,6 +21,7 @@ function App() {
             border: "1px solid #4E54F0",
             color: "#ffffff",
             background: "#000000",
+            fontSize: "0.8rem",
           },
         }}
       />

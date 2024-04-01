@@ -12,6 +12,7 @@ import { Translate } from "./Translate";
 import HoverCard from "./HoverCard";
 import { Theme } from "./Theme";
 import MenuIcon from "@mui/icons-material/Menu";
+import toast from "react-hot-toast";
 const Topbar = () => {
   const { theme } = themeStore();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,6 +31,7 @@ const Topbar = () => {
 
   const newChat = async () => {
     console.log("delete");
+    toast.success("Chat Cleared")
     deleteComponent();
   };
   const translate = () => {
