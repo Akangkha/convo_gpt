@@ -138,7 +138,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
               Ask !
             </div>
             <div
-              className={`bg-highlight-1       mbXSmall:hidden items-center cursor-pointer px-6 h-12 rounded-lg flex `}
+              className={`bg-highlight-1  hidden mbMini:flex mbXSmall:hidden items-center cursor-pointer px-6 h-12 rounded-lg `}
               onClick={() => {
                 postDataToAPI();
                 getbotResponse();

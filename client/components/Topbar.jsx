@@ -31,7 +31,7 @@ const Topbar = () => {
 
   const newChat = async () => {
     console.log("delete");
-    toast.success("Chat Cleared")
+    toast.success("Chat Cleared");
     deleteComponent();
   };
   const translate = () => {
@@ -83,7 +83,7 @@ const Topbar = () => {
           </Menu>
         </div>
       </div>
-      <div className="     mbXSmall:flex gap-4  items-center hidden ">
+      <div className="flex  gap-4  items-center flex-col absolute top-6 right-4 md:static md:flex-row ">
         {lang && (
           <div className="relative inline-block">
             <Translate />
@@ -123,9 +123,6 @@ const Topbar = () => {
           {showPopover == 3 && <HoverCard info="clear chat" />}
         </div>
       </div>
-
-
-
     </div>
   );
 };
