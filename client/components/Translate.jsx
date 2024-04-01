@@ -24,7 +24,6 @@ export function Translate() {
         ],
       };
 
-      addComponent(userData);
       await createChat(userData);
       setInputValue("");
     } catch (error) {
