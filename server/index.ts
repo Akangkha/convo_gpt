@@ -10,19 +10,19 @@ import useBot from "./routes/botModel";
 dotenv.config();
 
 const app: Application = express();
+
+const corsConfig = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "DELETE", "PUT"],
+};
+app.use(cors(corsConfig));
 const mongo_db = process.env.MONGO_URI || "mongodb://localhost:27017/convo_gpt";
 if (!mongo_db) {
   throw new Error("MONGO_URI must be set in the environment variables");
 }
 const port = process.env.PORT || 5000;
 
-const corsConfig = {
-  origin: "https://convo-gpt-m4rw.vercel.app",
-  optionsSuccessStatus: 200,
-  methods: ["GET", "POST", "DELETE", "PUT"],
-};
-
-app.use(cors(corsConfig));
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(morgan("dev"));
