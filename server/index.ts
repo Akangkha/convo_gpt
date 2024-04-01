@@ -14,8 +14,9 @@ const app: Application = express();
 const corsConfig = {
   origin: "*",
   optionsSuccessStatus: 200,
-  methods: ["GET", "POST", "DELETE", "PUT"],
+  methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
 };
+
 app.use(cors(corsConfig));
 const mongo_db = process.env.MONGO_URI || "mongodb://localhost:27017/convo_gpt";
 if (!mongo_db) {
