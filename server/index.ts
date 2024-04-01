@@ -16,8 +16,13 @@ if (!mongo_db) {
 }
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsConfig = {
+  origin: "https://convo-gpt-m4rw.vercel.app",
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "DELETE", "PUT"],
+};
 
+app.use(cors(corsConfig));
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.json());
 app.use(morgan("dev"));

@@ -39,7 +39,7 @@ const Topbar = () => {
       <div
         className={`flex justify-center items-center text-highlight-${theme} gap-2 `}
       >
-        ConvoGPT 1.0 : AiDoc
+        ConvoGPT 1.0 : AIDoc
         <div>
           <div
             id="basic-button"
@@ -66,14 +66,14 @@ const Topbar = () => {
           >
             <MenuItem className="px-5 py-4 flex flex-col gap-4 ">
               <div className="flex gap-3 p-4 text-[white]">
-                <AutoAwesomeIcon sx={{ color: "#FE375B" }} />
+                <AutoAwesomeIcon sx={{ color: "#4E54F0" }} />
                 Upgrade
               </div>
               <div className="w-[20rem] text-wrap text-center text-white ">
                 Unlock the Infinite Potential of AI: Experience Our Most
                 Advanced and Intelligent GPT Model Yet.
               </div>
-              <div className="bg-highlight rounded-lg px-8 py-2 text-white font-bold text-center">
+              <div className="bg-highlight bg-highlight-1 rounded-lg px-8 py-2 text-white font-bold text-center">
                 Upgrade to Plus
               </div>
             </MenuItem>
