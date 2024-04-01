@@ -5,31 +5,37 @@ import MenuItem from "@mui/material/MenuItem";
 import { useComponentStore, themeStore } from "../state/store";
 import { v4 as uuidv4 } from "uuid";
 import ListItemText from "@mui/material/ListItemText";
-
+import { createChat } from "../lib/page";
+import { botResponse } from "../lib/page";
 export function Translate() {
   const { chats, addComponent } = useComponentStore();
 
-  const langset = async ({ lang }) => {
+  const langset = async (lang) => {
     try {
-      const userData = {
+      const botResponseData = await botResponse(
+        `From now on I will talk in ${lang} language!`
+      );
+      const botData = {
         userId: uuidv4(),
         chatbotId: uuidv4(),
         languageModel: "gpt-1.0",
         messages: [
           {
-            author: "user",
-            text: `We will have conversationin ${lang}`,
+            author: "ConvoGPT",
+            text: botResponseData,
             timestamp: new Date(),
           },
         ],
       };
-
-      await createChat(userData);
+      addComponent(botData);
+      await createChat(botData);
+      await createChat(botData);
       setInputValue("");
     } catch (error) {
       console.error("Error creating chat:", error.message);
     }
   };
+
   return (
     <div
       sx={{ width: 320, maxWidth: "100%" }}
@@ -37,13 +43,27 @@ export function Translate() {
     >
       <MenuList>
         <MenuItem>
-          <ListItemText onClick={langset("Hindi")}>Hindi</ListItemText>
+          <ListItemText onClick={() => langset("Hindi")}>Hindi</ListItemText>
         </MenuItem>
         <MenuItem>
-          <ListItemText onClick={langset("Tamil")}>Tamil</ListItemText>
+          <ListItemText onClick={() => langset("Tamil")}>Tamil</ListItemText>
         </MenuItem>
         <MenuItem>
-          <ListItemText onClick={langset("Bengali")}>Bengali</ListItemText>
+          <ListItemText onClick={() => langset("Bengali")}>
+            Bengali
+          </ListItemText>
+        </MenuItem>
+
+        <MenuItem>
+          <ListItemText onClick={() => langset("Dutch")}>Dutch</ListItemText>
+        </MenuItem>
+        <MenuItem>
+          <ListItemText onClick={() => langset("Korean")}>Korean</ListItemText>
+        </MenuItem>
+        <MenuItem>
+          <ListItemText onClick={() => langset("Japanese")}>
+            Japanese
+          </ListItemText>
         </MenuItem>
         <Divider />
       </MenuList>

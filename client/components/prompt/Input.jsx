@@ -25,9 +25,7 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
 
   const getbotResponse = async () => {
     try {
-      console.log("pressed");
       const botResponseData = await botResponse(inputValue);
-      console.log(botResponseData);
       const userData = {
         userId: uuidv4(),
         chatbotId: uuidv4(),
