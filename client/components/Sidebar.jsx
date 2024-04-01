@@ -13,6 +13,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { getChats } from "../lib/page";
 import HoverCard from "./HoverCard";
+import { getlocation } from "../lib/geolocation";
 import toast from "react-hot-toast";
 import { useComponentStore } from "../state/store";
 import { deleteChats } from "../lib/page";
@@ -120,8 +121,8 @@ export default function Sidebar() {
             </div>
           </div>
           {DrawerList}
-          <div className="bg-highlight-1 flex items-center justify-center text-white  py-4 rounded-lg m-3 ">
-            Contact doctors nearby
+          <div className="bg-highlight-1 max-w-[90%] text-center flex items-center justify-center text-white  py-4 rounded-lg m-3 cursor-pointer text-sm absolute bottom-0" onClick={()=>getlocation()}>
+            Contact pharmacies/doctors nearby
           </div>
         </Drawer>
         {open ? (

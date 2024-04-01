@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { useComponentStore } from "../state/store";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { copyContent } from "../lib/CopyText";
+import { copyContent } from "../lib/copyText";
 
 import Modal from "@mui/material/Modal";
 import "../style/chatCard.css";
