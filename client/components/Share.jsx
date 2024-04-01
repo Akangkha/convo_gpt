@@ -28,10 +28,10 @@ export const Share = ({ setShare, share }) => {
       <Box
         sx={style}
         className="container-card 
-        .bg-blue-box flex flex-col items-center justify-center p-8 w-[40vw]"
+        .bg-blue-box flex flex-col items-center justify-center p-8 w-[40vw] "
       >
-        <div className="container-card ">
-          <div className="border rounded-lg p-6" id="copyText" >
+        <div className="container-card h-[30rem]  ">
+          <div className="border rounded-lg p-6 h-[28rem] overflow-scroll" id="copyText" >
             {chats.length > 0 ? (
               chats.map((message, index) => (
                 <div key={index} id="copyText">

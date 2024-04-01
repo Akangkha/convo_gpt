@@ -25,42 +25,39 @@ export const Theme = ({ setTheme }) => {
       <Box
         sx={style}
         className="container-card 
-        .bg-theme-box flex flex-col items-center justify-center p-8 pt-0 w-[50vw] h-[55vh]"
+        .bg-theme-box flex flex-col items-center justify-center p-8 pt-0 w-[50vw] mbXSmall:h-[55vh] h-[60vh]"
       >
-        <div className="container-card ">
-          <Typography id="modal-modal-title" variant="h5" component="h2">
-            THEME- ConvoGPT 1.0
-          </Typography>
-          <p className="text-sm mt-4  w-[80%]">
-            Transform Your Experience: Embrace a New Theme Today! Select one to
-            choose your theme!
-          </p>
-          <div className="flex w-full h-full items-center justify-around p-2 gap-0">
-            <div className="flex flex-col border rounded-lg p-6 justify-center items-center">
-              {" "}
-              <img
-                src="/icons/theme1.png"
-                alt="theme 1 pallette"
-                width="49px"
-                style={{ marginBottom: "0px"}}
-              />
-            </div>
-            <div className="flex flex-col border rounded-lg p-6 justify-center items-center">
-              <img
-                src="/icons/theme2.png"
-                alt="theme 2 pallette"
-                width="49px"
-                style={{ marginBottom: "0px" }}
-              />
-            </div>
-            <div className="flex flex-col border rounded-lg p-6 justify-center items-center">
-              <img
-                src="/icons/theme3.png"
-                alt="theme 3 pallette"
-                width="55px"
-                style={{ marginBottom: "0px" }}
-              />
-            </div>
+        <Typography id="modal-modal-title" variant="h5" component="h2">
+          THEME- ConvoGPT 1.0
+        </Typography>
+        <p className="text-sm mt-4  w-[98%] mbXSmall:w-[80%]">
+          Transform Your Experience: Embrace a New Theme Today! Select one to
+          choose your theme!
+        </p>
+        <div className="grid md:grid-cols-3 grid-cols-1 items-center justify-around p-2 gap-4 h-[10rem] overflow-scroll">
+          <div className="flex flex-col border rounded-lg p-6 justify-center items-center">
+            <img
+              src="/icons/theme1.png"
+              alt="theme 1 pallette"
+              width="49px"
+              style={{ marginBottom: "0px" }}
+            />
+          </div>
+          <div className="flex flex-col border rounded-lg p-6 justify-center items-center">
+            <img
+              src="/icons/theme2.png"
+              alt="theme 2 pallette"
+              width="49px"
+              style={{ marginBottom: "0px" }}
+            />
+          </div>
+          <div className="flex flex-col border rounded-lg p-6 justify-center items-center">
+            <img
+              src="/icons/theme3.png"
+              alt="theme 3 pallette"
+              width="55px"
+              style={{ marginBottom: "0px" }}
+            />
           </div>
         </div>
       </Box>

@@ -11,6 +11,7 @@ import { Share } from "./Share";
 import { Translate } from "./Translate";
 import HoverCard from "./HoverCard";
 import { Theme } from "./Theme";
+import MenuIcon from "@mui/icons-material/Menu";
 const Topbar = () => {
   const { theme } = themeStore();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,7 +38,7 @@ const Topbar = () => {
   return (
     <div className="w-screen h-16 text-white  flex fixed z-10 justify-between items-center px-12 font-extrabold">
       <div
-        className={`flex justify-center items-center text-highlight-${theme} gap-2 `}
+        className={`flex justify-center items-center text-highlight-${theme} gap-2 text-sm`}
       >
         ConvoGPT 1.0 : AIDoc
         <div>
@@ -80,7 +81,7 @@ const Topbar = () => {
           </Menu>
         </div>
       </div>
-      <div className="flex gap-4  items-center">
+      <div className="     mbXSmall:flex gap-4  items-center hidden ">
         {lang && (
           <div className="relative inline-block">
             <Translate />
@@ -120,6 +121,9 @@ const Topbar = () => {
           {showPopover == 3 && <HoverCard info="clear chat" />}
         </div>
       </div>
+
+
+
     </div>
   );
 };

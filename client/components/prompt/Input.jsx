@@ -125,17 +125,28 @@ export const Input = React.forwardRef(({ className, ...props }, ref) => {
           <AudioRecorder />
         </div>
         {theme && (
-          <div
-            // className={`bg-highlight-${theme} flex items-center cursor-pointer px-6 h-12 rounded-lg`}
-            className={`bg-highlight-1  flex items-center cursor-pointer px-6 h-12 rounded-lg`}
-            onClick={() => {
-              postDataToAPI();
-              getbotResponse();
-            }}
-          >
-            {" "}
-            Ask <IosShareIcon className="mb-1 ml-2" />
-          </div>
+          <>
+            <div
+              // className={`bg-highlight-${theme} flex items-center cursor-pointer px-6 h-12 rounded-lg`}
+              className={`bg-highlight-1       mbXSmall:flex items-center cursor-pointer px-6 h-12 rounded-lg hidden `}
+              onClick={() => {
+                postDataToAPI();
+                getbotResponse();
+              }}
+            >
+              {" "}
+              Ask !
+            </div>
+            <div
+              className={`bg-highlight-1       mbXSmall:hidden items-center cursor-pointer px-6 h-12 rounded-lg flex `}
+              onClick={() => {
+                postDataToAPI();
+                getbotResponse();
+              }}
+            >
+              <IosShareIcon />
+            </div>
+          </>
         )}
       </div>
     </div>

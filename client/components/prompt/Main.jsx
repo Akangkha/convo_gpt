@@ -15,16 +15,16 @@ const Main = () => {
           ))
         ) : (
           <div className="h-full w-full  flex flex-col items-center justify-center">
-            <div className="flex justify-center items-center ">
+            <div className="flex justify-center items-center  flex-col      mbXSmall:flex-row">
               <img src="/icons/logo.png" className="h-16 w-16" alt="logo" />
-              <p className="font-bold text-accent-1 text-4xl sm:text-6xl">
+              <p className="font-bold text-accent-1      mbXSmall:text-4xl text-3xl sm:text-6xl">
                 CONVOGPT
               </p>
             </div>
             <p className="text-center mt-4">Hello {user}!</p>
             <p className="text-center mt-4">
-              Start a conversation with the AIDoc regarding your medical aid by typing in the input
-              box below.
+              Start a conversation with the AIDoc regarding your medical aid by
+              typing in the input box below.
             </p>
           </div>
         )}

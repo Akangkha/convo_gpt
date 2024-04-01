@@ -30,7 +30,6 @@ export function Translate() {
       addComponent(botData);
       await createChat(botData);
       await createChat(botData);
-      setInputValue("");
     } catch (error) {
       console.error("Error creating chat:", error.message);
     }
