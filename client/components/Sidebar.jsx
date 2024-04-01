@@ -52,7 +52,7 @@ export default function Sidebar() {
   const deleteData = async () => {
     try {
       await deleteChats();
-      toast.success("History Cleared ! Refresh to see changes");
+      toast.success("History Deleted! Refresh to see changes");
     } catch (error) {
       console.error("Error deleting chat:", error.message);
     }
@@ -115,7 +115,7 @@ export default function Sidebar() {
                 onMouseLeave={() => setShowPopover(false)}
               />
               {showPopover && (
-                <HoverCard info="clear chat" className="right-0" />
+                <HoverCard info="delete history" className="right-0" />
               )}
             </div>
           </div>

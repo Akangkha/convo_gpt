@@ -1,5 +1,5 @@
 const apiUrl = import.meta.env.VITE_APP_API_URL;
-console.log(apiUrl);
+import toast from "react-hot-toast";
 export const getChats = async () => {
   try {
     const response = await fetch(`${apiUrl}/chat`);
@@ -20,7 +20,6 @@ export const getChat = async (id) => {
 };
 
 export const createChat = async (chatData) => {
-  console.log(chatData);
   return fetch(`${apiUrl}/chat`, {
     method: "POST",
     headers: {
@@ -71,12 +70,18 @@ export const deleteChats = async () => {
 
 export const botResponse = async (msg) => {
   try {
-    const response = await fetch(
-      `${apiUrl}/bot?msg=${encodeURIComponent(msg)}`
-    );
+    toast.promise(fetch(`${apiUrl}/bot?msg=${encodeURIComponent(msg)}`), {
+      loading: 'Loading...',
+      success: 'Response fetched successfully',
+      error: 'Error when fetching',
+    });
+    
+    const response = await fetch(`${apiUrl}/bot?msg=${encodeURIComponent(msg)}`);
+
     if (!response.ok) {
       throw new Error("Failed to fetch response");
     }
+
     const contentType = response.headers.get("content-type");
     if (contentType && contentType.includes("application/json")) {
       return await response.json();
@@ -88,3 +93,4 @@ export const botResponse = async (msg) => {
     throw error;
   }
 };
+

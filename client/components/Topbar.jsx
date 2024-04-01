@@ -30,7 +30,6 @@ const Topbar = () => {
   };
 
   const newChat = async () => {
-    console.log("delete");
     toast.success("Chat Cleared");
     deleteComponent();
   };
