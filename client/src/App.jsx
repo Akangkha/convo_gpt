@@ -9,7 +9,7 @@ function App() {
   const [count, setCount] = useState(0);
   console.log(import.meta.env.VITE_APP_API_URL);
   return (
-    <div className=" h-screen w-screen flex flex-col  ">
+    <div className=" h-full w-full flex flex-col  ">
       <Topbar />
       <div className="flex ">
         <Sidebar />

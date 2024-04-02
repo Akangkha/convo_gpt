@@ -37,7 +37,7 @@ const Topbar = () => {
     setlang(!lang);
   };
   return (
-    <div className="w-screen h-16 text-white  flex fixed z-10 justify-between items-center px-12 font-extrabold">
+    <div className="w-full h-16 text-white  flex fixed z-10 justify-between items-center px-12 font-extrabold">
       <div
         className={`flex justify-center items-center text-highlight-${theme} gap-2 text-sm`}
       >

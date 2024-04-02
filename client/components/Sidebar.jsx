@@ -66,7 +66,7 @@ export default function Sidebar() {
           chat.messages.length > 0 ? (
             chat.messages.map((message, messageIndex) =>
               message ? (
-                <Card className="border rounded-lg flex border-black shadow-lg h-12 text-accent-1">
+                <Card className="border rounded-lg flex border-black shadow-lg h-12 text-accent-1" key={messageIndex}>
                   <>
                     <div className="overflow-hidden w-[85%] h-full">
                       {message.text.substring(0, 25)}
