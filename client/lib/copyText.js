@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+//used to copy text to clipboard
 export const copyContent = async () => {
   try {
     let text = document.getElementById("copyText").innerHTML;

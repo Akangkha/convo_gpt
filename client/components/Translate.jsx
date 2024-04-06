@@ -2,15 +2,14 @@ import * as React from "react";
 import Divider from "@mui/material/Divider";
 import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
-import { useComponentStore} from "../state/store";
+import { useComponentStore } from "../state/store";
 import { v4 as uuidv4 } from "uuid";
 import ListItemText from "@mui/material/ListItemText";
-
 import { createChat } from "../lib/page";
 import { botResponse } from "../lib/page";
 export function Translate() {
   const { chats, addComponent } = useComponentStore();
-
+  //component for setting language by generating a response from the bot api by setting the language via prompt
   const langset = async (lang) => {
     try {
       const botResponseData = await botResponse(
@@ -30,7 +29,6 @@ export function Translate() {
       };
       addComponent(botData);
       await createChat(botData);
-    
     } catch (error) {
       console.error("Error creating chat:", error.message);
     }

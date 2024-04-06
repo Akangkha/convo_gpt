@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "../lib/utils";
-
+//card component for minor ui components
 export const Card = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}

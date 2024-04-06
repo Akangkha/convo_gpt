@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import SpatialAudioOffIcon from "@mui/icons-material/SpatialAudioOff";
-
+//used for recording audio
 const AudioRecorder = () => {
   const [permission, setPermission] = useState(false);
   const [recordingStatus, setRecordingStatus] = useState("inactive");

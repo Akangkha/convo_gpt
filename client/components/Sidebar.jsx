@@ -28,7 +28,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     let isMounted = true;
-
+ //fetches chart history from the db server on onMount and on changes in state of the chat
     async function fetchData() {
       try {
         const chats = await getChats();
@@ -123,7 +123,8 @@ export default function Sidebar() {
           {DrawerList}
           <div className="bg-highlight-1 max-w-[90%] text-center flex items-center justify-center text-white  py-4 rounded-lg m-3 cursor-pointer text-sm absolute bottom-0" onClick={()=>getlocation()}>
             Contact pharmacies/doctors nearby
-          </div>
+          </div> 
+          {/* uses the geolocation api to get the location of the user and display the nearby pharmacies and doctors via google maps api  */}
         </Drawer>
         {open ? (
           <NavigateBeforeIcon

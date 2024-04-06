@@ -16,7 +16,7 @@ const style = {
 export const Share = ({ setShare, share }) => {
   const handleClose = () => setShare(false);
   const { chats } = useComponentStore();
-
+  //component for sharing chat history
 
   return (
     <Modal
@@ -32,8 +32,11 @@ export const Share = ({ setShare, share }) => {
         .bg-blue-box flex flex-col items-center justify-center p-8 w-[40vw] "
       >
         <div className="container-card h-[30rem]  ">
-          <div className="border rounded-lg p-6 h-[28rem] overflow-scroll" id="copyText" >
-            {chats.length > 0 ? (
+          <div
+            className="border rounded-lg p-6 h-[28rem] overflow-scroll"
+            id="copyText"
+          >
+            {chats.length > 0 ? ( //displaying chat history
               chats.map((message, index) => (
                 <div key={index} id="copyText">
                   {message.message.messages.map((msg, idx) => (
@@ -50,8 +53,11 @@ export const Share = ({ setShare, share }) => {
               <p className="text-center">No chats to share !</p>
             )}
           </div>
-          <section className="mt-6 flex justify-end cursor-pointer"  onClick={copyContent}>
-            <ContentCopyIcon/>
+          <section
+            className="mt-6 flex justify-end cursor-pointer"
+            onClick={copyContent}
+          >
+            <ContentCopyIcon />
           </section>
         </div>
       </Box>

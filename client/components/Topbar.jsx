@@ -11,7 +11,6 @@ import { Share } from "./Share";
 import { Translate } from "./Translate";
 import HoverCard from "./HoverCard";
 import { Theme } from "./Theme";
-import MenuIcon from "@mui/icons-material/Menu";
 import toast from "react-hot-toast";
 const Topbar = () => {
   const { theme } = themeStore();
@@ -31,7 +30,7 @@ const Topbar = () => {
 
   const newChat = async () => {
     toast.success("Chat Cleared");
-    deleteComponent();
+    deleteComponent(); //changes the chat state to empty array thus clrearing the current chat
   };
   const translate = () => {
     setlang(!lang);
