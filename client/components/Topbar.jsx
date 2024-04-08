@@ -88,14 +88,14 @@ const Topbar = () => {
           </div>
         )}
         <GTranslateIcon onClick={translate} />
-        <div className="relative inline-block">
+        {/* <div className="relative inline-block">
           <ColorLensIcon
             onMouseEnter={() => setShowPopover(1)}
             onMouseLeave={() => setShowPopover(false)}
             onClick={() => setTheme(true)}
           />
           {showPopover == 1 && <HoverCard info="change theme" />}
-        </div>
+        </div> */}
 
         {themes && <Theme setTheme={setTheme} />}
         <div className="relative inline-block">
